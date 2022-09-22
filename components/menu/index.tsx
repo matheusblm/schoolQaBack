@@ -1,8 +1,9 @@
-import { Box, HStack, Icon, Text, VStack } from "@chakra-ui/react";
+import { Box, Heading, HStack, Icon, VStack } from "@chakra-ui/react";
 import { MdSettings, MdOutlineLibraryBooks } from "react-icons/md";
 import { FaUserFriends } from "react-icons/fa";
 import { IconType } from "react-icons";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 type OptionsType = {
   title: string;
@@ -14,41 +15,45 @@ export const Menu = () => {
   const options: OptionsType[] = [
     {
       title: "Aula",
-      link: "aluno/aula",
+      link: "/aluno/aula",
       icon: MdOutlineLibraryBooks,
     },
     {
       title: "Turma",
-      link: "aluno/turma",
+      link: "/aluno/turma",
       icon: FaUserFriends,
     },
     {
       title: "Configurações",
-      link: "configuracoes",
+      link: "/configuracoes",
       icon: MdSettings,
     },
   ];
-
+  const { pathname } = useRouter();
+  console.log(pathname);
   return (
     <HStack
       justifyContent="space-around"
       borderRadius="10px"
       height="70px"
       width="300px"
-      bg="gray.100"
       padding="10px"
-      shadow="xl"
+      shadow="md"
+      bg="white"
     >
       {options.map((option) => (
         <Link href={option.link} key={option.link}>
-          <Box
-            _hover={{ opacity: "0.5", transtition: "0.5", cursor: "pointer" }}
+          <VStack
+            _hover={{ opacity: "0.5", cursor: "pointer" }}
+            width="80"
+            transitionDuration="0.75s"
+            color={pathname === option.link ? "blue.600" : "gray.600"}
           >
-            <VStack>
-              <Icon as={option.icon} fontSize="20px" />
-            </VStack>
-            <Text>{option.title}</Text>
-          </Box>
+            <Icon as={option.icon} fontSize="3xl" />
+            <Heading fontSize="sm" fontWeight="semibold">
+              {option.title}
+            </Heading>
+          </VStack>
         </Link>
       ))}
     </HStack>
