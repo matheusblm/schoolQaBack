@@ -30,14 +30,22 @@ export const Menu = () => {
   ];
 
   return (
-    <HStack justifyContent="space-evenly" borderRadius="10px">
+    <HStack
+      justifyContent="space-around"
+      borderRadius="10px"
+      height="70px"
+      width="300px"
+      bg="gray.100"
+      padding="10px"
+      shadow="xl"
+    >
       {options.map((option) => (
         <Link href={option.link} key={option.link}>
           <Box
             _hover={{ opacity: "0.5", transtition: "0.5", cursor: "pointer" }}
           >
             <VStack>
-              <Icon as={option.icon} />
+              <Icon as={option.icon} fontSize="20px" />
             </VStack>
             <Text>{option.title}</Text>
           </Box>

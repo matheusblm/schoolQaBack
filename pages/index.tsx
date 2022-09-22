@@ -1,13 +1,11 @@
-import { Box } from "@chakra-ui/react";
+import { Box, VStack } from "@chakra-ui/react";
 import { Menu } from "../components/menu";
 
 const Home = () => {
   return (
-    <div>
-      <Box>
-        <Menu />
-      </Box>
-    </div>
+    <VStack w="100vw" h="100vh">
+      <Menu />
+    </VStack>
   );
 };
 
