@@ -1,10 +1,12 @@
-import Link from "next/link";
+import { Box } from "@chakra-ui/react";
+import { Menu } from "../components/menu";
 
 const Home = () => {
   return (
     <div>
-      <Link href="/login">login</Link>
-      <Link href="/login">login</Link>
+      <Box>
+        <Menu />
+      </Box>
     </div>
   );
 };

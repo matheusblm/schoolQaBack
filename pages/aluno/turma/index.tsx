@@ -1,11 +1,11 @@
 import { Box, Text } from "@chakra-ui/react";
 
-export const Amigos = () => {
+export const Turma = () => {
   return (
     <Box>
-      <Text>Amigos</Text>
+      <Text>Turma</Text>
     </Box>
   );
 };
 
-export default Amigos;
+export default Turma;
