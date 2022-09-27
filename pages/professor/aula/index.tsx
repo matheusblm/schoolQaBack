@@ -1,6 +1,18 @@
-import { Box, Center, Flex, Heading, Spinner } from "@chakra-ui/react";
-import { AskAndAnswerBlock } from "../../../components/AskAndAnswerBlock";
+import {
+  Box,
+  Button,
+  Center,
+  Flex,
+  Heading,
+  HStack,
+  Spinner,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import { EllipseBlock } from "../../../components/EllipseBlock";
+import { ModalAskCreate } from "../../../components/ModalAskCreate";
+import { ModalCreateTopic } from "../../../components/ModalCreateTopic";
+import { ModalLastAsk } from "../../../components/ModalLastAsk";
 import { Layout } from "../../../Layout";
 
 export const Aula = () => {
@@ -14,21 +26,39 @@ export const Aula = () => {
     title: "Numeros pares",
     isSelect: true,
   };
-
+  const alunos = ["jorginho", "mumuzinho"];
   return (
-    <Layout student={false}>
-      <Box width="100%">
+    <Layout>
+      <Box width="100%" height="100%">
         {fakeObj.isLoading ? (
           <Spinner />
         ) : (
           <Box height="100%" width="100%" padding="20px">
-            <Heading size="md">Olá {fakeObj.name}</Heading>
+            <Heading size="md">Olá Professor {fakeObj.name}</Heading>
             <Flex
-              justifyContent="center"
+              justifyContent="space-between"
               alignItems="center"
               alignContent="center"
+              height="100%"
             >
-              <AskAndAnswerBlock />
+              <VStack w="33%">
+                <Heading>Topicos</Heading>
+                <p>topico1</p>
+                <ModalCreateTopic />
+              </VStack>
+              <VStack>
+                <ModalLastAsk />
+                <ModalAskCreate />
+              </VStack>
+
+              <VStack w="33%" alignContent="center" alignItems="center">
+                <Heading fontSize="md">
+                  Alunos que responderam a pergunta
+                </Heading>
+                {alunos.map((item) => (
+                  <Text key={item}>{item}</Text>
+                ))}
+              </VStack>
             </Flex>
           </Box>
         )}

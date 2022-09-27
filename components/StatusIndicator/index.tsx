@@ -1,7 +1,11 @@
 import { Box, Flex, keyframes, Tooltip } from "@chakra-ui/react";
 import React from "react";
 
-export const StatusIndicator = () => {
+type StatusIndicatorProps = {
+  askIsOn: boolean;
+};
+
+export const StatusIndicator = ({ askIsOn }: StatusIndicatorProps) => {
   const activeColor = "green.500";
   const inactiveColor = "gray.400";
   const ringScaleMin = 0.33;
@@ -47,8 +51,10 @@ export const StatusIndicator = () => {
       flexDir="column"
       overflow="hidden"
     >
-      {/* Ideally, only the box should be used. The <Flex /> is used to style the preview. */}
-      <Tooltip label={`Status: Active`} textTransform="capitalize">
+      <Tooltip
+        label={askIsOn ? `Aguardando sua resposta` : `Aguarde o professor`}
+        textTransform="capitalize"
+      >
         <Box
           as="div"
           h="24px"
@@ -73,16 +79,6 @@ export const StatusIndicator = () => {
           _after={{
             animation: `2.25s ${pulseDot} cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite`,
           }}
-        />
-      </Tooltip>
-      <Tooltip label={`Status: Inactive`} textTransform="capitalize">
-        <Box
-          as="div"
-          h="24px"
-          w="24px"
-          position="relative"
-          bgColor={inactiveColor}
-          borderRadius="50%"
         />
       </Tooltip>
     </Flex>

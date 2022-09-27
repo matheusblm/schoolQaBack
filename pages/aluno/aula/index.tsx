@@ -1,6 +1,15 @@
-import { Box, Center, Flex, Heading, Spinner } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  Flex,
+  Heading,
+  HStack,
+  Spinner,
+  VStack,
+} from "@chakra-ui/react";
 import { AskAndAnswerBlock } from "../../../components/AskAndAnswerBlock";
 import { EllipseBlock } from "../../../components/EllipseBlock";
+import { StatusIndicator } from "../../../components/StatusIndicator";
 import { Layout } from "../../../Layout";
 
 export const Aula = () => {
@@ -24,11 +33,23 @@ export const Aula = () => {
           <Box height="100%" width="100%" padding="20px">
             <Heading size="md">Olá {fakeObj.name}</Heading>
             <Flex
-              justifyContent="center"
+              justifyContent="space-between"
               alignItems="center"
               alignContent="center"
             >
-              <AskAndAnswerBlock />
+              <VStack w="33%">
+                <Heading>Topicos</Heading>
+                <p>topico1</p>
+              </VStack>
+              {fakeObj.aulaIsOn ? (
+                <AskAndAnswerBlock />
+              ) : (
+                <p>Aguarde o professor</p>
+              )}
+
+              <HStack w="33%">
+                <StatusIndicator askIsOn={fakeObj.aulaIsOn} />
+              </HStack>
             </Flex>
           </Box>
         )}
