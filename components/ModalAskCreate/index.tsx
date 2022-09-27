@@ -39,11 +39,11 @@ export const ModalAskCreate = () => {
             <Box>
               <VStack gridGap="5" alignItems="start">
                 <Heading size="md">Pergunta</Heading>
-                <Input name="pergunta" placeHolder="titulo da pergunta" />
+                <Input name="pergunta" placeholder="titulo da pergunta" />
                 {[1, 2, 3, 4, 5].map((item) => (
                   <VStack gridGap="5" alignItems="start" key={item} w="full">
                     <Heading size="md">{item} Resposta</Heading>
-                    <Input name="pergunta" placeHolder="titulo da resposta" />
+                    <Input name="pergunta" placeholder="titulo da resposta" />
                     <RadioGroup>
                       <Stack direction="row">
                         <Radio value="1">Errada</Radio>

@@ -1,12 +1,5 @@
-import { Box, VStack } from "@chakra-ui/react";
-import { Menu } from "../components/Menu";
+import { LoginForm } from "../components/LoginForm";
 
-const Home = () => {
-  return (
-    <VStack w="100vw" h="100vh">
-      <Menu />
-    </VStack>
-  );
-};
-
-export default Home;
+export default function Login() {
+  return <LoginForm />;
+}
