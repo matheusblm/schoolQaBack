@@ -16,7 +16,7 @@ export const Aula = () => {
   };
 
   return (
-    <Layout>
+    <Layout student={false}>
       <Box width="100%">
         {fakeObj.isLoading ? (
           <Spinner />

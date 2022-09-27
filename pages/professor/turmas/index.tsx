@@ -1,17 +1,14 @@
 import {
-  Table,
-  Thead,
-  Tbody,
-  Tfoot,
-  Tr,
-  Th,
-  Td,
-  TableCaption,
-  TableContainer,
   Box,
   Heading,
-  HStack,
-  Text,
+  Table,
+  TableCaption,
+  TableContainer,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
 } from "@chakra-ui/react";
 
 import { Layout } from "../../../Layout";
@@ -45,7 +42,7 @@ export const Turma = () => {
     },
   ];
   return (
-    <Layout>
+    <Layout student={false}>
       <Box height="100%" width="100%" padding="20px">
         <Heading size="md">Turma</Heading>
         <TableContainer mt="30px">

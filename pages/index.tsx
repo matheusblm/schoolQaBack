@@ -1,5 +1,5 @@
 import { Box, VStack } from "@chakra-ui/react";
-import { Menu } from "../components/menu";
+import { Menu } from "../components/Menu";
 
 const Home = () => {
   return (

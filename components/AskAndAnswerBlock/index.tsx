@@ -26,10 +26,19 @@ export const AskAndAnswerBlock = () => {
       {
         tittle: "8",
       },
+      {
+        tittle: "8",
+      },
+      {
+        tittle: "8",
+      },
+      {
+        tittle: "8",
+      },
     ],
   };
   return (
-    <Box>
+    <Box zIndex={999} borderRadius="10px" shadow="xl" padding="10px">
       <Heading fontSize="md">{perguntaErespost.pergunta}</Heading>
       <RadioGroup defaultValue="1">
         <Stack>
