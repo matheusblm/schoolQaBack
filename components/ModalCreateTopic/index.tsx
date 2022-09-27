@@ -8,10 +8,14 @@ import {
   ModalCloseButton,
   useDisclosure,
   Button,
+  Heading,
 } from "@chakra-ui/react";
+import { useState } from "react";
+import { Input } from "../Input";
 
 export const ModalCreateTopic = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [topicTitle, setTopicTitle] = useState("");
   return (
     <>
       <Button onClick={onOpen} colorScheme="orange">
@@ -21,15 +25,19 @@ export const ModalCreateTopic = () => {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader>Criando um novo topico</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>Criar</ModalBody>
+          <ModalBody>
+            <Heading size="md">Nome do Topico</Heading>
+            <Input
+              value={topicTitle}
+              onBlur={(event: any) => setTopicTitle(event.target.value)}
+              placeHolder="Ex: Geografia"
+            />
+          </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
-            </Button>
-            <Button variant="ghost">Secondary Action</Button>
+            <Button colorScheme="orange">Criar</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
