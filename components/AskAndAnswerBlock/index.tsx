@@ -13,34 +13,37 @@ import {
   Stack,
   Text,
   useRadioGroup,
+  useToast,
   VStack,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { useSubmitAnswer } from "../../hooks/useSubmitAnswer";
+import { AskType } from "../../services/queries/Ask/types";
 import { Answers } from "../Answers";
 
-export const AskAndAnswerBlock = () => {
-  const [selectedAnswers, setSelectedAnswers] = useState("");
+type AskAndAnswerBlockProps = {
+  askData?: AskType;
+};
 
-  const perguntaErespost = {
-    pergunta:
-      "Normalmente, quantos litros de sangue uma pessoa tem? Em média, quantos são retirados numa doação de sangue?",
-    respostas: [
-      {
-        title: "Tem entre 2 a 4 litros. São retirados 450 mililitros",
-      },
-      {
-        title: "3",
-      },
-      {
-        title: "6",
-      },
-      {
-        title: "7",
-      },
-      {
-        title: "8",
-      },
-    ],
+export const AskAndAnswerBlock = ({ askData }: AskAndAnswerBlockProps) => {
+  const [selectedAnswers, setSelectedAnswers] = useState("");
+  const toast = useToast();
+  const submitAnswer = useSubmitAnswer();
+
+  const handleSubmitAnswer = () => {
+    try {
+      submitAnswer.mutateAsync({
+        asksId: askData?.id || "",
+        title: askData?.id || "",
+      });
+    } catch (error) {
+      toast({
+        title: "Erro ao enviar",
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      });
+    }
   };
   return (
     <Center zIndex={999}>
@@ -59,15 +62,15 @@ export const AskAndAnswerBlock = () => {
           </Heading>
         </Stack>
         <Stack textAlign={"center"} p={6} align={"center"}>
-          <Text>P: {perguntaErespost.pergunta}</Text>
+          <Text>P: {askData?.title}</Text>
         </Stack>
 
         <Box px={6}>
           <List spacing={3} py={8}>
-            {perguntaErespost.respostas.map((item, index) => (
-              <ListItem key={item.title}>
+            {askData?.answers.map((item, index) => (
+              <ListItem key={item.id}>
                 <Answers
-                  id={item.title}
+                  id={item.id}
                   index={index}
                   title={item.title}
                   selectedAnswers={selectedAnswers}

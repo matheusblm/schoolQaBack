@@ -11,11 +11,35 @@ import {
   AvatarGroup,
   IconProps,
   Icon,
+  Select,
 } from "@chakra-ui/react";
 import { Input } from "../../../components/Input";
 import { Layout } from "../../../Layout";
+import * as yup from "yup";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+type SignUpFormData = {
+  email: string;
+  password: string;
+  name: string;
+};
+
+const signUpFormSchema = yup.object().shape({
+  email: yup.string().email("E-mail inválido").required("E-mail obrigatório"),
+  name: yup.string().required("Nome obrigatório"),
+  password: yup.string().required("Senha obrigatória"),
+});
 
 export const Register = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<SignUpFormData>({
+    resolver: yupResolver(signUpFormSchema),
+  });
+
   return (
     <Layout menuOff>
       <Box position={"relative"}>
@@ -43,11 +67,25 @@ export const Register = () => {
             </Stack>
             <Box as={"form"} mt={10}>
               <Stack spacing={4}>
-                <Input placeholder="Nome" />
-                <Input placeholder="email" />
-                <Input placeholder="password" />
-                <Input placeholder="password confirm" />
-                <Input placeholder="turma" />
+                <Input
+                  placeholder="Nome"
+                  error={errors.name}
+                  {...register("name")}
+                />
+                <Input
+                  placeholder="email@email.com"
+                  error={errors.email}
+                  {...register("email")}
+                />
+                <Input
+                  placeholder="password"
+                  error={errors.password}
+                  {...register("password")}
+                  type="password"
+                />
+                <Select
+                  onChange={(event) => console.log(event.target.value)}
+                ></Select>
               </Stack>
               <Button mt={8} w={"full"} colorScheme="blue" type="submit">
                 Registrar

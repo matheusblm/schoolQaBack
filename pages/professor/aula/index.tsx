@@ -13,6 +13,7 @@ import { EllipseBlock } from "../../../components/EllipseBlock";
 import { ModalAskCreate } from "../../../components/ModalAskCreate";
 import { ModalCreateTopic } from "../../../components/ModalCreateTopic";
 import { ModalLastAsk } from "../../../components/ModalLastAsk";
+import { useTopics } from "../../../hooks/useTopics";
 import { Layout } from "../../../Layout";
 
 export const Aula = () => {
@@ -27,6 +28,9 @@ export const Aula = () => {
     isSelect: true,
   };
   const alunos = ["jorginho", "mumuzinho"];
+
+  const { data: topicsData } = useTopics();
+
   return (
     <Layout>
       <Box width="100%" height="100%">

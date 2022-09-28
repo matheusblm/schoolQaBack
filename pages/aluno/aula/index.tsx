@@ -5,14 +5,20 @@ import {
   Heading,
   HStack,
   Spinner,
+  Text,
   VStack,
 } from "@chakra-ui/react";
 import { AskAndAnswerBlock } from "../../../components/AskAndAnswerBlock";
 import { EllipseBlock } from "../../../components/EllipseBlock";
 import { StatusIndicator } from "../../../components/StatusIndicator";
+import { useAsk } from "../../../hooks/useAsk";
+import { useStudentTopics } from "../../../hooks/useStudentTopics";
+import { useTopics } from "../../../hooks/useTopics";
 import { Layout } from "../../../Layout";
 
 export const Aula = () => {
+  const { data: studentTopics } = useStudentTopics();
+  const { data: askData } = useAsk();
   const fakeObj = {
     name: "Matheus",
     aulaIsOn: true,
@@ -39,10 +45,12 @@ export const Aula = () => {
             >
               <VStack w="33%">
                 <Heading>Topicos</Heading>
-                <p>topico1</p>
+                {studentTopics?.map((item) => (
+                  <Text key={item.id}>{item.title}</Text>
+                ))}
               </VStack>
-              {fakeObj.aulaIsOn ? (
-                <AskAndAnswerBlock />
+              {askData ? (
+                <AskAndAnswerBlock askData={askData} />
               ) : (
                 <p>Aguarde o professor</p>
               )}
